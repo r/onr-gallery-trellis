@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Field Notes — TRELLIS.2 · Owners Not Renters</title>
+<meta name="description" content="A two-specimen test of Microsoft's TRELLIS.2 image-to-3D model, accompanying an issue of Owners Not Renters." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+<style>
+  :root {
+    --paper:        #f4efe6;
+    --paper-deep:   #ebe4d6;
+    --ink:          #1a1814;
+    --ink-soft:     #4a463e;
+    --ink-mute:     #7a7468;
+    --rule:         #c9c2b4;
+    --rule-soft:    #ddd6c6;
+    --accent:       #6b1e1e;   /* oxblood */
+    --accent-deep:  #4a1212;
+
+    --serif:  'Fraunces', 'EB Garamond', Georgia, serif;
+    --mono:   'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+
+    --col:    1100px;
+    --col-narrow: 640px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-feature-settings: "ss01", "kern";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    font-size: 18px;
+    line-height: 1.55;
+    font-variation-settings: "opsz" 14, "SOFT" 50;
+  }
+
+  ::selection { background: var(--accent); color: var(--paper); }
+
+  a {
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    transition: border-color .15s ease, color .15s ease;
+  }
+  a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+  /* ---------- layout shell ---------- */
+
+  .page {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: 56px 48px 96px;
+  }
+
+  /* ---------- masthead ---------- */
+
+  .masthead {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 24px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--ink);
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .masthead .lockup {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .masthead .wordmark {
+    font-family: var(--serif);
+    font-size: 17px;
+    font-weight: 500;
+    font-variation-settings: "opsz" 18, "SOFT" 30;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+  }
+  .masthead .issue {
+    color: var(--ink-mute);
+  }
+  .masthead nav { display: flex; gap: 22px; }
+  .masthead nav a {
+    border: none;
+    color: var(--ink-soft);
+  }
+  .masthead nav a:hover { color: var(--accent); }
+
+  /* ---------- title block ---------- */
+
+  .title-block {
+    padding: 76px 0 56px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+    border-bottom: 1px solid var(--rule);
+  }
+  .title-meta {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    line-height: 1.9;
+  }
+  .title-meta dt {
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .title-meta dd {
+    margin: 0 0 14px;
+    color: var(--ink-mute);
+  }
+  .title-meta dd:last-child { margin-bottom: 0; }
+
+  h1.display {
+    margin: 0 0 28px;
+    font-size: clamp(40px, 5.4vw, 68px);
+    line-height: 1.02;
+    font-weight: 400;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+  }
+  h1.display em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .lede {
+    max-width: 56ch;
+    font-size: 19.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-variation-settings: "opsz" 16, "SOFT" 40;
+  }
+  .lede a {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+  .lede a:hover { color: var(--accent); }
+
+  /* ---------- specimens ---------- */
+
+  .specimens { padding-top: 16px; }
+
+  .specimen {
+    padding: 64px 0 56px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .specimen:last-child { border-bottom: none; }
+
+  .spec-head {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: baseline;
+    margin-bottom: 36px;
+  }
+  .spec-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-top: 8px;
+  }
+  .spec-tag .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin-right: 8px;
+    vertical-align: 2px;
+  }
+  .spec-title {
+    margin: 0;
+    font-size: clamp(28px, 3.2vw, 40px);
+    line-height: 1.08;
+    font-weight: 400;
+    font-variation-settings: "opsz" 96, "SOFT" 70;
+    letter-spacing: -0.012em;
+  }
+  .spec-title small {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 400;
+  }
+
+  /* pair */
+  .pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .panel {
+    display: flex;
+    flex-direction: column;
+  }
+  .panel-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 0 0 12px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 14px;
+  }
+  .panel-label .key { color: var(--ink); }
+  .panel-label .val { color: var(--ink-mute); font-weight: 400; }
+
+  .frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    background: var(--paper-deep);
+    overflow: hidden;
+    /* subtle inner hairline, not a card */
+    box-shadow: inset 0 0 0 1px var(--rule-soft);
+  }
+  .frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background: var(--paper-deep);
+  }
+  .frame model-viewer {
+    width: 100%;
+    height: 100%;
+    --poster-color: transparent;
+    background-color: var(--paper-deep);
+    /* lavender tint disabled — keep paper tone */
+    --progress-bar-color: var(--accent);
+    --progress-bar-height: 1px;
+  }
+
+  /* model-viewer prompt + controls overrides */
+  model-viewer::part(default-progress-bar) {
+    background-color: var(--accent);
+  }
+
+  /* error overlay for missing GLBs */
+  .frame .mv-error {
+    position: absolute;
+    inset: 0;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background:
+      repeating-linear-gradient(
+        135deg,
+        var(--paper-deep) 0,
+        var(--paper-deep) 14px,
+        #e1d9c7 14px,
+        #e1d9c7 15px
+      );
+    color: var(--ink-mute);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 24px;
+    pointer-events: none;
+  }
+  .frame[data-mv-error="true"] .mv-error { display: flex; }
+  .frame .mv-error .name { color: var(--ink-soft); font-weight: 500; }
+  .frame .mv-error .hint { color: var(--ink-mute); font-size: 9.5px; letter-spacing: 0.1em; }
+
+  /* placeholder shown when no asset is loaded */
+  .frame .placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background:
+      repeating-linear-gradient(
+        135deg,
+        var(--paper-deep) 0,
+        var(--paper-deep) 14px,
+        #e1d9c7 14px,
+        #e1d9c7 15px
+      );
+    color: var(--ink-mute);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 24px;
+  }
+  .frame .placeholder .name {
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .frame .placeholder .hint {
+    color: var(--ink-mute);
+    font-size: 9.5px;
+    letter-spacing: 0.1em;
+  }
+
+  /* per-panel meta strip below frame */
+  .panel-foot {
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding-top: 10px;
+  }
+  .panel-foot .file { color: var(--ink-soft); }
+
+  /* caption */
+  .caption {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .caption .cap-tag {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding-top: 6px;
+  }
+  .caption .cap-body {
+    max-width: 60ch;
+    font-size: 17.5px;
+    line-height: 1.6;
+    color: var(--ink);
+    font-variation-settings: "opsz" 14, "SOFT" 40;
+  }
+  .caption .cap-body p { margin: 0 0 14px; }
+  .caption .cap-body p:last-child { margin-bottom: 0; }
+  .caption .sources {
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .caption .sources a {
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    margin-right: 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 12px;
+  }
+  .caption .sources a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .caption .sources .label {
+    display: inline-block;
+    margin-right: 12px;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- colophon ---------- */
+
+  .colophon {
+    margin-top: 88px;
+    padding-top: 28px;
+    border-top: 1px solid var(--ink);
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    gap: 48px;
+    align-items: baseline;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .colophon .col-body {
+    max-width: 60ch;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .colophon a {
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+  }
+  .colophon a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .colophon .end {
+    color: var(--ink-mute);
+    font-size: 10.5px;
+  }
+
+  /* ---------- responsive ---------- */
+
+  @media (max-width: 880px) {
+    .page { padding: 36px 24px 64px; }
+    .title-block,
+    .spec-head,
+    .caption,
+    .colophon {
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+    .title-meta { display: flex; flex-wrap: wrap; gap: 4px 22px; }
+    .title-meta dd { margin-bottom: 0; }
+    .pair { grid-template-columns: 1fr; gap: 24px; }
+    .frame { aspect-ratio: 1 / 1; }
+    h1.display { font-size: clamp(34px, 9vw, 48px); }
+    .colophon { gap: 14px; }
+  }
+
+  /* dotted leader between dt/dd in a row, optional polish */
+  @media (min-width: 881px) {
+    .title-meta dl { display: contents; }
+  }
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <!-- ============== MASTHEAD ============== -->
+  <header class="masthead">
+    <div class="lockup">
+      <span class="wordmark">Owners Not Renters</span>
+      <span class="issue">Field&nbsp;Note · 28.04.2026</span>
+    </div>
+    <nav>
+      <a href="https://newsletter.ownersnotrenters.com">↩ newsletter.ownersnotrenters.com</a>
+    </nav>
+  </header>
+
+  <!-- ============== TITLE ============== -->
+  <section class="title-block">
+    <aside class="title-meta">
+      <dl>
+        <dt>Subject</dt><dd>TRELLIS.2</dd>
+        <dt>Method</dt><dd>Image → 3D</dd>
+        <dt>Specimens</dt><dd>Two (n=2)</dd>
+        <dt>Format</dt><dd>GLB · interactive</dd>
+      </dl>
+    </aside>
+    <div>
+      <h1 class="display">Two images, two meshes.<br><em>A short field test of TRELLIS.2.</em></h1>
+      <p class="lede">
+        I fed two images into Microsoft's
+        <a href="https://github.com/microsoft/TRELLIS.2">TRELLIS.2</a> — one a clean product render,
+        the other an out-of-distribution photograph of an architectural model — and let it produce
+        meshes. Generated on the public
+        <a href="https://huggingface.co/spaces/microsoft/TRELLIS.2">Hugging&nbsp;Face Space</a>.
+        The source images and the resulting GLBs are paired below; rotate the models to inspect.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== SPECIMENS ============== -->
+  <section class="specimens">
+
+    <!-- ============== SPEC 01 ============== -->
+    <article class="specimen">
+      <header class="spec-head">
+        <div class="spec-tag"><span class="dot"></span>Spec. 01 · In-Distribution</div>
+        <h2 class="spec-title">
+          Ambient Podcast Player
+          <small>Designed object · controlled lighting</small>
+        </h2>
+      </header>
+
+      <div class="pair">
+        <!-- 2D -->
+        <div class="panel">
+          <div class="panel-label">
+            <span class="key">2D · Source</span>
+            <span class="val">PNG · render</span>
+          </div>
+          <figure class="frame">
+            <img src="podcast-player.png" alt="AI render of an ambient podcast player: black/teal device with circular speaker, small color screen reading 'Space Exploration', embossed PODCAST lettering and metallic handle." onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="placeholder" style="display:none;">
+              <span class="name">podcast-player.png</span>
+              <span class="hint">drop source render here</span>
+            </div>
+          </figure>
+          <div class="panel-foot">
+            <span class="file">podcast-player.png</span>
+            <span>render · sRGB</span>
+          </div>
+        </div>
+
+        <!-- 3D -->
+        <div class="panel">
+          <div class="panel-label">
+            <span class="key">3D · TRELLIS.2 Output</span>
+            <span class="val">GLB · interactive</span>
+          </div>
+          <figure class="frame" data-glb="podcast-player.glb">
+            <div class="mv-error">
+              <span class="name">podcast-player.glb</span>
+              <span class="hint">drop generated mesh here</span>
+            </div>
+            <model-viewer
+              src="podcast-player.glb"
+              alt="3D model of the podcast player generated by TRELLIS.2."
+              camera-controls
+              touch-action="pan-y"
+              auto-rotate
+              auto-rotate-delay="2000"
+              shadow-intensity="0.6"
+              exposure="1.05"
+              environment-image="neutral"
+              loading="lazy"
+              interaction-prompt="auto"
+              interaction-prompt-style="basic">
+              <div slot="poster" class="placeholder">
+                <span class="name">podcast-player.glb</span>
+                <span class="hint">loading mesh…</span>
+              </div>
+            </model-viewer>
+          </figure>
+          <div class="panel-foot">
+            <span class="file">podcast-player.glb</span>
+            <span>drag to rotate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="caption">
+        <div class="cap-tag">Note</div>
+        <div class="cap-body">
+          <p><a href="https://www.linkedin.com/posts/rkrikorian_my-wife-and-i-follow-jonathan-haidts-no-activity-7399125469574389761-F10S/">An AI render of a podcast player</a> I'd been imagining: black-and-teal body, a circular speaker face, a small color screen reading <em>Space Exploration</em>, embossed <em>PODCAST</em> lettering, a metallic handle. An in-distribution test — designed object, controlled lighting, the kind of image the model should handle cleanly.</p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ============== SPEC 02 ============== -->
+    <article class="specimen">
+      <header class="spec-head">
+        <div class="spec-tag"><span class="dot"></span>Spec. 02 · Out-of-Distribution</div>
+        <h2 class="spec-title">
+          Space Garden
+          <small>Architectural model · organic-meets-engineered</small>
+        </h2>
+      </header>
+
+      <div class="pair">
+        <!-- 2D -->
+        <div class="panel">
+          <div class="panel-label">
+            <span class="key">2D · Source</span>
+            <span class="val">PNG · photograph</span>
+          </div>
+          <figure class="frame">
+            <img src="space-garden.png" alt="Photograph of an architectural model: thirty pod-like discs on slender brass armatures splaying outward from a textured central capsule." onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="placeholder" style="display:none;">
+              <span class="name">space-garden.png</span>
+              <span class="hint">drop architectural model photo here</span>
+            </div>
+          </figure>
+          <div class="panel-foot">
+            <span class="file">space-garden.png</span>
+            <span>photograph · sRGB</span>
+          </div>
+        </div>
+
+        <!-- 3D -->
+        <div class="panel">
+          <div class="panel-label">
+            <span class="key">3D · TRELLIS.2 Output</span>
+            <span class="val">GLB · interactive</span>
+          </div>
+          <figure class="frame" data-glb="space-garden.glb">
+            <div class="mv-error">
+              <span class="name">space-garden.glb</span>
+              <span class="hint">drop generated mesh here</span>
+            </div>
+            <model-viewer
+              src="space-garden.glb"
+              alt="3D model of the Space Garden orbiting greenhouse concept generated by TRELLIS.2."
+              camera-controls
+              touch-action="pan-y"
+              auto-rotate
+              auto-rotate-delay="2000"
+              shadow-intensity="0.6"
+              exposure="1.05"
+              environment-image="neutral"
+              loading="lazy"
+              interaction-prompt="auto"
+              interaction-prompt-style="basic">
+              <div slot="poster" class="placeholder">
+                <span class="name">space-garden.glb</span>
+                <span class="hint">loading mesh…</span>
+              </div>
+            </model-viewer>
+          </figure>
+          <div class="panel-foot">
+            <span class="file">space-garden.glb</span>
+            <span>drag to rotate</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="caption">
+        <div class="cap-tag">Note</div>
+        <div class="cap-body">
+          <p>The <em><a href="https://www.aureliainstitute.org/space-garden">Space Garden</a></em>, an orbiting greenhouse concept by my friends Ariel Ekblaw (<a href="https://www.aureliainstitute.org/">Aurelia Institute</a>) and Thomas Heatherwick (<a href="https://heatherwick.com/">Heatherwick Studio</a>). Thirty pod-like discs splay from a textured central capsule on slender brass armatures. An out-of-distribution stress test — organic-meets-engineered geometry I was sure TRELLIS.2 had never seen in training.</p>
+        </div>
+      </div>
+    </article>
+
+  </section>
+
+  <!-- ============== COLOPHON ============== -->
+  <footer class="colophon">
+    <div class="col-tag">Colophon</div>
+    <div class="col-body">
+      Meshes generated 28.04.2026 on the public Hugging Face Space for
+      <a href="https://github.com/microsoft/TRELLIS.2">microsoft/TRELLIS.2</a>.
+      Return to <a href="https://newsletter.ownersnotrenters.com">Owners&nbsp;Not&nbsp;Renters</a>.
+    </div>
+    <div class="end">— ◊ —</div>
+  </footer>
+
+</main>
+
+<script>
+  // Flag frames whose GLB fails to load so we can show the specimen-style error overlay.
+  document.querySelectorAll('model-viewer').forEach((mv) => {
+    mv.addEventListener('error', () => {
+      const frame = mv.closest('.frame');
+      if (frame) frame.setAttribute('data-mv-error', 'true');
+    });
+  });
+</script>
+
+</body>
+</html>
